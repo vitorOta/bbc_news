@@ -24,6 +24,9 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildFeatures {
+        buildConfig = true
+    }
 
     buildTypes {
         release {
@@ -35,22 +38,36 @@ android {
         }
     }
 
+    flavorDimensions("provider", "country")
     productFlavors {
         create("bbc") {
+            dimension = "provider"
             applicationIdSuffix = ".bbc"
             versionNameSuffix = "-bbc"
-            buildConfigField("String","PROVIDER_ID", "bbc-news")
-            buildConfigField("String","PROVIDER_NAME", "BBC News")
+
+            buildConfigField("String", "PROVIDER", "\"bbc\"")
+        }
+
+        create("us") {
+            dimension = "country"
+            applicationIdSuffix = ".us"
+            versionNameSuffix = "-us"
+
+            buildConfigField("String", "COUNTRY", "\"us\"")
         }
     }
+
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+
+    implementation(project(":features:news"))
+
     testImplementation(libs.junit)
+    testImplementation(libs.koin.test)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

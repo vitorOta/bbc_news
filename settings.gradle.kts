@@ -23,3 +23,4 @@ rootProject.name = "News"
 include(":app")
 include(":features:news")
 include(":libraries:network")
+include(":libraries:mvi")
