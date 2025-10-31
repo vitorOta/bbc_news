@@ -4,8 +4,6 @@ import com.vitorota.features.news.BuildConfig
 import com.vitorota.features.news.domain.model.Article
 
 sealed class NewsViewState {
-
-    object InitialState : NewsViewState()
     data class ListContent(
         val articles: List<Article>
     ) : NewsViewState()

@@ -5,13 +5,13 @@ import java.util.Date
 
 data class ArticleSchema(
     @SerializedName("title")
-    val title: String = "",
+    val title: String?,
     @SerializedName("description")
-    val description: String = "",
+    val description: String?,
     @SerializedName("urlToImage")
-    val urlToImage: String = "",
+    val urlToImage: String?,
     @SerializedName("publishedAt")
-    val publishedAt: Date = Date(),
+    val publishedAt: Date?,
     @SerializedName("content")
-    val content: String = ""
+    val content: String?
 )

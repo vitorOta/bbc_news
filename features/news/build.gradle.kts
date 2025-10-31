@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.biometric)
     api(libs.koin)
 
     implementation(libs.androidx.navigation.compose)
@@ -64,6 +65,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
     debugImplementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.coil.compose)
 
     testImplementation(libs.junit)
     testImplementation(libs.koin.test)

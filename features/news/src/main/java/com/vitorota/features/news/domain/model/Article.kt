@@ -7,5 +7,5 @@ data class Article(
     val description: String,
     val urlToImage: String,
     val publishedAt: Date,
-    val content: String?
+    val content: String
 )

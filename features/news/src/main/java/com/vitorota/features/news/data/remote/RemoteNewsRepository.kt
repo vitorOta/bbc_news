@@ -6,6 +6,7 @@ import com.vitorota.features.news.domain.model.Article
 import com.vitorota.libraries.network.ApiBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.util.Date
 
 class RemoteNewsRepository(apiBuilder: ApiBuilder) : NewsRepository {
     private val api = apiBuilder
@@ -21,9 +22,9 @@ class RemoteNewsRepository(apiBuilder: ApiBuilder) : NewsRepository {
 }
 
 private fun ArticleSchema.toArticle() = Article(
-    title = this.title,
-    description = this.description,
-    urlToImage = this.urlToImage,
-    publishedAt = this.publishedAt,
-    content = this.content
+    title = this.title ?: "-",
+    description = this.description ?: "-",
+    urlToImage = this.urlToImage ?: "",
+    publishedAt = this.publishedAt ?: Date(),
+    content = this.content ?: "-"
 )

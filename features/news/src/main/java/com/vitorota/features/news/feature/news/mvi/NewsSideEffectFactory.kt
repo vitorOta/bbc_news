@@ -7,6 +7,7 @@ class NewsSideEffectFactory : SideEffectFactory<NewsResult, NewsSideEffect> {
         return when (result) {
             is NewsResult.ArticleSelected -> NewsSideEffect.GoToArticle
             is NewsResult.NavigateUp -> NewsSideEffect.NavigateUp
+            is NewsResult.PromptBiometry -> NewsSideEffect.PromptBiometry
             else -> null
         }
     }

@@ -9,4 +9,5 @@ sealed class NewsResult {
     object Loading : NewsResult()
 
     object NavigateUp : NewsResult()
+    object PromptBiometry : NewsResult()
 }

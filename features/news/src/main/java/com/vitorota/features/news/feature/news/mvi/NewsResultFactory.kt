@@ -15,7 +15,8 @@ class NewsResultFactory(private val newsRepository: NewsRepository) :
         return when (intent) {
             is NewsIntent.FetchNews -> fetchArticles()
             is NewsIntent.SelectArticle -> selectArticle(intent.article)
-            is NewsIntent.NavigateUp -> flow { NewsResult.NavigateUp }
+            is NewsIntent.Return -> flow { emit(NewsResult.NavigateUp) }
+            is NewsIntent.RequestBiometry -> flow { emit(NewsResult.PromptBiometry) }
         }
     }
 

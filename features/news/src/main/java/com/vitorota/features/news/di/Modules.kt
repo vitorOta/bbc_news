@@ -19,10 +19,10 @@ import com.vitorota.libraries.network.ApiBuilder
 import com.vitorota.mvi.ResultFactory
 import com.vitorota.mvi.SideEffectFactory
 import com.vitorota.mvi.ViewStateFactory
+import org.koin.compose.getKoin
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
-
 fun prepareNewsModule(country: String, provider: String) = module {
     single<String>(named("country")) { country }
     single<String>(named("provider")) { provider }

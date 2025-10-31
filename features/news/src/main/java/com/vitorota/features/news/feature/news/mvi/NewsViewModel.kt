@@ -10,7 +10,7 @@ class NewsViewModel(
     viewStateFactory: ViewStateFactory<NewsResult, NewsViewState>,
     sideEffectFactory: SideEffectFactory<NewsResult, NewsSideEffect>
 ) : MviViewModel<NewsIntent, NewsResult, NewsViewState, NewsSideEffect>(
-    initialViewState = NewsViewState.InitialState,
+    initialViewState = NewsViewState.Loading,
     defaultErrorViewState = NewsViewState.Error(RuntimeException("viewModel default exception")),
     resultFactory = resultFactory,
     viewStateFactory = viewStateFactory,
