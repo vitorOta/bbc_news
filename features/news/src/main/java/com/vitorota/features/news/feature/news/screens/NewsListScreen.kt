@@ -20,11 +20,11 @@ import com.vitorota.features.news.feature.news.mvi.NewsViewModel
 import com.vitorota.features.news.feature.news.mvi.NewsViewState
 import com.vitorota.features.news.feature.news.screens.sharedviews.NewsErrorText
 import com.vitorota.features.news.feature.news.screens.sharedviews.NewsLoading
-import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.viewmodel.koinActivityViewModel
 
 @Composable
 fun NewsListScreen(
-    viewModel: NewsViewModel = koinViewModel(),
+    viewModel: NewsViewModel = koinActivityViewModel(),
     onArticleClick: (Article) -> Unit
 ) {
     val viewState by viewModel.viewState.collectAsState()
@@ -42,14 +42,17 @@ fun NewsListScreen(
             is NewsViewState.Loading -> {
                 NewsLoading()
             }
+
             is NewsViewState.ListContent -> {
                 NewsList(state.articles, onArticleClick, Modifier.fillMaxSize())
             }
+
             is NewsViewState.Error -> {
                 NewsErrorText("${state.error.message} \n click to retry", Modifier.clickable {
                     viewModel.dispatch(NewsIntent.FetchNews)
                 })
             }
+
             else -> {
                 NewsErrorText("viewState not handled: $state")
             }

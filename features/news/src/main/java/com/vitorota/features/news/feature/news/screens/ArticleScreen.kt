@@ -18,11 +18,11 @@ import com.vitorota.features.news.feature.news.mvi.NewsViewModel
 import com.vitorota.features.news.feature.news.mvi.NewsViewState
 import com.vitorota.features.news.feature.news.screens.sharedviews.NewsErrorText
 import com.vitorota.features.news.feature.news.screens.sharedviews.NewsLoading
-import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.viewmodel.koinActivityViewModel
 
 @Composable
 fun ArticleScreen(
-    viewModel: NewsViewModel = koinViewModel(),
+    viewModel: NewsViewModel = koinActivityViewModel(),
     onNavigateUp: () -> Unit
 ) {
     val viewState by viewModel.viewState.collectAsState()
@@ -35,6 +35,7 @@ fun ArticleScreen(
             is NewsViewState.Loading -> {
                 NewsLoading()
             }
+
             is NewsViewState.ArticleContent -> {
                 ArticleDetail(state.article, Modifier.fillMaxSize())
             }
@@ -49,6 +50,7 @@ fun ArticleScreen(
                         .padding(24.dp)
                 )
             }
+
             else -> {
                 NewsErrorText("viewState not handled: $state")
             }

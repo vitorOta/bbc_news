@@ -36,6 +36,7 @@ fun prepareNewsModule(country: String, provider: String) = module {
     single<ResultFactory<NewsIntent, NewsResult>> { NewsResultFactory(get()) }
     single<ViewStateFactory<NewsResult, NewsViewState>> { NewsViewStateFactory() }
 
+
     viewModelOf(::NewsViewModel)
 }
 
