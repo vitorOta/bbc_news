@@ -10,11 +10,14 @@ import com.vitorota.features.news.data.remote.interceptor.ParametersInterceptor
 import com.vitorota.features.news.feature.news.mvi.NewsIntent
 import com.vitorota.features.news.feature.news.mvi.NewsResult
 import com.vitorota.features.news.feature.news.mvi.NewsResultFactory
+import com.vitorota.features.news.feature.news.mvi.NewsSideEffect
+import com.vitorota.features.news.feature.news.mvi.NewsSideEffectFactory
 import com.vitorota.features.news.feature.news.mvi.NewsViewModel
 import com.vitorota.features.news.feature.news.mvi.NewsViewState
 import com.vitorota.features.news.feature.news.mvi.NewsViewStateFactory
 import com.vitorota.libraries.network.ApiBuilder
 import com.vitorota.mvi.ResultFactory
+import com.vitorota.mvi.SideEffectFactory
 import com.vitorota.mvi.ViewStateFactory
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.core.qualifier.named
@@ -35,6 +38,7 @@ fun prepareNewsModule(country: String, provider: String) = module {
 
     single<ResultFactory<NewsIntent, NewsResult>> { NewsResultFactory(get()) }
     single<ViewStateFactory<NewsResult, NewsViewState>> { NewsViewStateFactory() }
+    single<SideEffectFactory<NewsResult, NewsSideEffect>> { NewsSideEffectFactory() }
 
 
     viewModelOf(::NewsViewModel)

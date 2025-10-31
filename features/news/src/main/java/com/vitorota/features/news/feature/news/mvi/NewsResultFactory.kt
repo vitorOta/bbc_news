@@ -13,8 +13,9 @@ class NewsResultFactory(private val newsRepository: NewsRepository) :
 
     override fun process(intent: NewsIntent): Flow<NewsResult> {
         return when (intent) {
-            NewsIntent.FetchNews -> fetchArticles()
+            is NewsIntent.FetchNews -> fetchArticles()
             is NewsIntent.SelectArticle -> selectArticle(intent.article)
+            is NewsIntent.NavigateUp -> flow { NewsResult.NavigateUp }
         }
     }
 

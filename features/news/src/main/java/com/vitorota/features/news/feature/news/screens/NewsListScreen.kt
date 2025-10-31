@@ -20,11 +20,10 @@ import com.vitorota.features.news.feature.news.mvi.NewsViewModel
 import com.vitorota.features.news.feature.news.mvi.NewsViewState
 import com.vitorota.features.news.feature.news.screens.sharedviews.NewsErrorText
 import com.vitorota.features.news.feature.news.screens.sharedviews.NewsLoading
-import org.koin.compose.viewmodel.koinActivityViewModel
 
 @Composable
 fun NewsListScreen(
-    viewModel: NewsViewModel = koinActivityViewModel(),
+    viewModel: NewsViewModel,
     onArticleClick: (Article) -> Unit
 ) {
     val viewState by viewModel.viewState.collectAsState()
@@ -39,7 +38,7 @@ fun NewsListScreen(
         contentAlignment = Alignment.Center
     ) {
         when (val state = viewState) {
-            is NewsViewState.Loading -> {
+            is NewsViewState.Loading, is NewsViewState.ArticleContent -> {
                 NewsLoading()
             }
 

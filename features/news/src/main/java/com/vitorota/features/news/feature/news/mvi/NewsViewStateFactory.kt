@@ -9,6 +9,7 @@ class NewsViewStateFactory : ViewStateFactory<NewsResult, NewsViewState> {
             is NewsResult.ArticleSelected -> NewsViewState.ArticleContent(result.data)
             is NewsResult.Loading -> NewsViewState.Loading
             is NewsResult.Error -> NewsViewState.Error(result.error)
+            is NewsResult.NavigateUp -> previousViewState
         }
     }
 }

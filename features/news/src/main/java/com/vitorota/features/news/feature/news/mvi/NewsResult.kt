@@ -7,4 +7,6 @@ sealed class NewsResult {
     data class ArticleSelected(val data: Article) : NewsResult()
     data class Error(val error: Throwable) : NewsResult()
     object Loading : NewsResult()
+
+    object NavigateUp : NewsResult()
 }
