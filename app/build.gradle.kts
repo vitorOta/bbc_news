@@ -38,6 +38,11 @@ android {
         }
     }
 
+    defaultConfig{
+        buildConfigField("String", "COUNTRY", "\"\"")
+        buildConfigField("String", "PROVIDER", "\"\"")
+    }
+
     flavorDimensions("provider", "country")
     productFlavors {
         create("bbc") {

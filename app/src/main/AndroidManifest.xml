@@ -10,6 +10,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.News" />
+        android:theme="@style/Theme.News">
+        <activity
+            android:name="com.vitorota.features.news.feature.news.NewsActivity"
+            android:exported="true">
+            <!-- 2. ADD THIS INTENT FILTER. This is what makes it the main activity. -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
 
 </manifest>

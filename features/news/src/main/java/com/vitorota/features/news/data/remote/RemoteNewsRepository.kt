@@ -8,12 +8,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class RemoteNewsRepository(apiBuilder: ApiBuilder) : NewsRepository {
-    private val api = apiBuilder.create(NewsApi::class.java)
+    private val api = apiBuilder
+        .create(NewsApi::class.java)
 
     override suspend fun fetchArticles(): List<Article> {
         return withContext(Dispatchers.IO) {
             val response = api.getHeadlines()
-            response.map { it.toArticle() }
+            val articles = response.body()?.articles
+            articles?.map { it.toArticle() } ?: throw RuntimeException("api error")
         }
     }
 }

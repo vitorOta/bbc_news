@@ -5,9 +5,10 @@ import com.vitorota.mvi.ViewStateFactory
 class NewsViewStateFactory : ViewStateFactory<NewsResult, NewsViewState> {
     override fun reduce(result: NewsResult, previousViewState: NewsViewState): NewsViewState {
         return when (result) {
-            is NewsResult.Success -> NewsViewState.ListContent(result.data)
-            NewsResult.Loading -> NewsViewState.Loading
-            is NewsResult.Error -> NewsViewState.Error
+            is NewsResult.ListSuccess -> NewsViewState.ListContent(result.data)
+            is NewsResult.ArticleSelected -> NewsViewState.ArticleContent(result.data)
+            is NewsResult.Loading -> NewsViewState.Loading
+            is NewsResult.Error -> NewsViewState.Error(result.error)
         }
     }
 }

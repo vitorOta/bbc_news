@@ -29,19 +29,16 @@ android {
 
     }
 
-    defaultConfig {
-        buildConfigField("String", "PROVIDER", "\"\"")
-        buildConfigField("String", "COUNTRY", "\"\"")
-    }
-
     flavorDimensions("provider", "country")
 
     buildTypes {
         debug {
+            buildConfigField("String", "DATA_URL", "\"https://newsapi.org/v2/\"")
             buildConfigField("String", "API_KEY", "\"919d4fa510be4a3f897f6acbd5332734\"")
         }
 
         release {
+            buildConfigField("String", "DATA_URL", "\"https://newsapi.org/v2/\"")
             buildConfigField("String", "API_KEY", "\"919d4fa510be4a3f897f6acbd5332734\"")
         }
     }
@@ -55,6 +52,9 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     api(libs.koin)
+
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.koin.androidx.compose)
 
     // Compose
     implementation(platform(libs.androidx.compose.bom))

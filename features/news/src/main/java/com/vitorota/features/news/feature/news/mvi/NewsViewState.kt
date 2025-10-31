@@ -4,7 +4,6 @@ import com.vitorota.features.news.BuildConfig
 import com.vitorota.features.news.domain.model.Article
 
 sealed class NewsViewState {
-    val title: String = BuildConfig.PROVIDER
 
     object InitialState : NewsViewState()
     data class ListContent(
@@ -13,6 +12,6 @@ sealed class NewsViewState {
 
     data class ArticleContent(val article: Article) : NewsViewState()
 
-    object Error : NewsViewState()
+    data class Error(val error: Throwable) : NewsViewState()
     object Loading : NewsViewState()
 }

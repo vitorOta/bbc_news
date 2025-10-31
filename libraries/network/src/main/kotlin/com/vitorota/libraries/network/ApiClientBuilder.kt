@@ -1,5 +1,6 @@
 package com.vitorota.libraries.network
 
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -8,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiBuilder {
     private var url = ""
-    private val gsonBuilder = GsonBuilder().setDateFormat("yyyy-MM-ddTHH:mm:ssZ")
+    private var gson = GsonBuilder().create()
     private val baseCient = OkHttpClient.Builder().build()
 
     private val myInterceptors = mutableListOf<Interceptor>()
@@ -17,8 +18,8 @@ class ApiBuilder {
         this.url = url
     }
 
-    fun dateFormat(dateFormat: String) = this.apply {
-        this.gsonBuilder.setDateFormat(dateFormat)
+    fun gson(gson: Gson) = this.apply {
+        this.gson = gson
     }
 
     fun addInterceptor(interceptor: Interceptor) = this.apply {
@@ -34,7 +35,7 @@ class ApiBuilder {
 
         val retrofit = Retrofit.Builder()
             .baseUrl(this.url)
-            .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .client(client)
             .build()
 

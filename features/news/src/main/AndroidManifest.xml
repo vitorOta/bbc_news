@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name=".feature.news.NewsListActivity"
+            android:name=".feature.news.NewsActivity"
             android:exported="true" />
     </application>
 </manifest>

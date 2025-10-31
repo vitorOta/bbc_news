@@ -1,15 +1,21 @@
 package com.vitorota.features.news.data.remote.interceptor
 
-import com.vitorota.features.news.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class ParametersInterceptor : Interceptor {
+class ParametersInterceptor(val country: String, val provider: String) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val newUrl = chain.request().url.newBuilder()
-            .addQueryParameter("provider", BuildConfig.PROVIDER)
-            .addQueryParameter("country", BuildConfig.COUNTRY)
+            .apply {
+                if (country.isNotBlank()) {
+                    addQueryParameter("country", country)
+                }
+                if (provider.isNotBlank()) {
+                    addQueryParameter("provider", provider)
+                }
+            }
+
             .build()
 
         val newRequest = chain.request().newBuilder()
