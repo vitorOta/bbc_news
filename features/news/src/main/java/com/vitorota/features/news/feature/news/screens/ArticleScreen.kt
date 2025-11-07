@@ -38,8 +38,12 @@ fun ArticleScreen(
         contentAlignment = Alignment.Center
     ) {
         when (val state = viewState) {
-            is NewsViewState.Loading, is NewsViewState.ListContent -> {
+            is NewsViewState.Loading -> {
                 NewsLoading()
+            }
+
+            is NewsViewState.ListContent -> {
+                     NewsErrorText("shouldn't be here")
             }
 
             is NewsViewState.ArticleContent -> {
