@@ -13,6 +13,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -33,6 +34,10 @@ fun NewsListScreen(
     onArticleClick: (Article) -> Unit
 ) {
     val viewState by viewModel.viewState.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.startScreen()
+    }
 
     Box(
         modifier = Modifier.fillMaxSize(),
